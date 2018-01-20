@@ -2,20 +2,18 @@ SurfStatus
 ==========
 
 ## Objectivo
-Aplicacao Android para, numa unica vista, ver o estado de varias praias favoritas evitando ter de abrir varias paginas diferentes a partir do browser.
+Aplicação Android para, numa única vista, ver o estado de várias praias favoritas evitando ter de abrir várias páginas diferentes a partir do browser.
 * [http://beachcam.meo.pt/reports/praia-do-moledo/]
 * [http://beachcam.meo.pt/reports/praia-da-mariana/]
 * [lista completa](http://beachcam.meo.pt/reports/) 
 
 ## Funcionalidades
-Acede 'a internet e interpreta o HTML para seleccionar o nome da praia, ou outras informacoes, assim como o estado actual da praia.
-Na base de dados local sera armazenado o nome da praia, o estado da praia e o url.
-A partir do ecra principal (praias favoritas), ao clicar numa praia, e' feita uma ligacao 'a internet e sera' apresentada a descricao detalhada das condicoes.
+Acede à página web bechcam.meo.pt-reports, interpreta o HTML, gera uma lista com as praias disponíveis e permite seleccionar as favoritas.
+Na base de dados local serão armazenados o nome da praia, o estado da praia e o url das praias favoritas.
+A partir do ecrã principal (praias favoritas), é apresentado o último estado de cada uma (Bom, Mau, Razoável) e é possível actualizar o mesmo.
+Também no ecrã principal, ao clicar numa praia é feita uma ligacao à página da respectiva praia e será apresentada a descrição detalhada das condições.
 
 ## Bugs
-* No ecra de escolha das praias a apresentar, e' necessario clicar no botao e nao deslizar;
-* ~~Se for usada a tecla de retorno do Android e nao o menu, a aplicacao pode deixar de funcionar.~~
-* Durante a operacao de recolha de dados (asynctask), se for interrompida, a aplicacao pode deixar de funcionar.
-
-
-
+* No ecrã de escolha das praias a apresentar, é necessário clicar e não deslizar o botão;
+* ~~Se for usada a tecla de retorno do Android e não o menu, a aplicação pode deixar de funcionar.~~
+* Durante a operação de recolha de dados (asynctask), se for interrompida, a aplicação pode deixar de funcionar.
