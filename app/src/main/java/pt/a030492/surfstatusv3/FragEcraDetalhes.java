@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class FragEcraDetalhes extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     TextView text;
+    FloatingActionButton bActualizar;
 
     public FragEcraDetalhes() {
 
@@ -55,10 +57,18 @@ public class FragEcraDetalhes extends Fragment {
         View view = inflater.inflate(R.layout.fragment_frag_ecra_detalhes, container, false);
         text = view.findViewById(R.id.textView);
 
-        String[] condicao = new String[2];
+        final String[] condicao = new String[2];
         condicao[0] = getArguments().getString("url");
 
         getConditionDescription(condicao[0]);
+
+        bActualizar = getActivity().findViewById(R.id.bActualizar);
+        bActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getConditionDescription(condicao[0]);
+            }
+        });
 
         return view;
     }

@@ -210,4 +210,9 @@ public class FragEscolherPraias extends Fragment {
             return rowView;
         }
     }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        bd.close();
+    }
 }

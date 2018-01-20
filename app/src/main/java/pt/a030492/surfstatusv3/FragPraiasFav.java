@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -65,9 +66,9 @@ public class FragPraiasFav extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_frag_praias_fav, container, false);
         list = view.findViewById(R.id.list);
-
         list.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -80,6 +81,18 @@ public class FragPraiasFav extends Fragment {
                 });
 
         bd = new AdaptadorBaseDados(view.getContext()).open();
+
+        bActualizar = getActivity().findViewById(R.id.bActualizar);
+
+        bActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (bd.getPraiasListar().size() == 0) {
+                    Toast.makeText(getContext(), "nao tem praias adicionadas", Toast.LENGTH_LONG).show();
+                }
+                updateCondicoes();
+            }
+        });
 
         setAdap();
         if (bd.getPraiasListar().size() == 0) {
@@ -106,30 +119,32 @@ public class FragPraiasFav extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
 
-        bActualizar = getActivity().findViewById(R.id.bActualizar);
-        bActualizar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (bd.getPraiasListar().size() == 0) {
-                    Toast.makeText(getContext(), "nao tem praias adicionadas", Toast.LENGTH_LONG).show();
-                }
-                updateCondicoes();
-            }
-        });
-
     }
 
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener = null;
+//        bd.close();
+//        getCurrentState("detach");
+//    }
+//
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    public void onPause(){
+        super.onPause();
         bd.close();
     }
 
     @Override
-    public void onStart(){
-        super.onStart();
+    public void onResume(){
+        super.onResume();
         bd.open();
+    }
+
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        bd.close();
     }
 
     public interface OnFragmentInteractionListener {
