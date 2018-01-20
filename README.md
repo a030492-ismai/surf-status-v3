@@ -14,7 +14,8 @@ A partir do ecra principal (praias favoritas), ao clicar numa praia, e' feita um
 
 ## Bugs
 * No ecra de escolha das praias a apresentar, e' necessario clicar no botao e nao deslizar;
-* Se for usada a tecla de retorno do Android e nao o menu, a aplicacao pode deixar de funcionar.
+* ~~Se for usada a tecla de retorno do Android e nao o menu, a aplicacao pode deixar de funcionar.~~
+* Durante a operacao de recolha de dados (asynctask), se for interrompida, a aplicacao pode deixar de funcionar.
 
 
 
