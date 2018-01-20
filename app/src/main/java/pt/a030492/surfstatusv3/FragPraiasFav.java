@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -65,7 +64,6 @@ public class FragPraiasFav extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_frag_praias_fav, container, false);
         list = view.findViewById(R.id.list);
@@ -121,14 +119,13 @@ public class FragPraiasFav extends Fragment {
 
     }
 
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//        bd.close();
-//        getCurrentState("detach");
-//    }
-//
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+        bd.close();
+    }
+
     @Override
     public void onPause(){
         super.onPause();
