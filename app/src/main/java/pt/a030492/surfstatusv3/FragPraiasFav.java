@@ -129,7 +129,7 @@ public class FragPraiasFav extends Fragment {
     @Override
     public void onPause(){
         super.onPause();
-        bd.close();
+//        bd.close();
     }
 
     @Override
@@ -141,7 +141,7 @@ public class FragPraiasFav extends Fragment {
     @Override
     public void onDestroyView(){
         super.onDestroyView();
-        bd.close();
+//        bd.close();
     }
 
     public interface OnFragmentInteractionListener {
@@ -164,11 +164,19 @@ public class FragPraiasFav extends Fragment {
                 @Override
                 protected String[] doInBackground(String... s) {
                     Document doc;
+
                     try {
+                        if (isCancelled())
+                        {
+                            return (null);
+                        }
                         doc = Jsoup.connect(s[2]).get();
                         s[1] = doc.select("div.classificationDescription").first().text();
+
                     } catch (IOException e) {
                         e.printStackTrace();
+                        s[1] = "-";
+                        return s;
                     }
 
                     return s;
@@ -176,8 +184,16 @@ public class FragPraiasFav extends Fragment {
 
                 @Override
                 protected void onPostExecute(String[] s) {
+                    if (isCancelled())
+                    {
+                        return;
+                    }
+                    if(s[1].equals("-")){
+                        Toast.makeText(getContext(), "verifique a ligacao 'a internet", Toast.LENGTH_LONG).show();
+                    }
                     bd.updateCondicaoPraia(s);
                     list.setAdapter(adap);
+
                 }
             }.execute(praia);
         }

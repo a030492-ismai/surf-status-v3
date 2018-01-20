@@ -14,6 +14,7 @@ A partir do ecrã principal (praias favoritas), é apresentado o último estado 
 Também no ecrã principal, ao clicar numa praia é feita uma ligacao à página da respectiva praia e será apresentada a descrição detalhada das condições.
 
 ## Bugs
-* No ecrã de escolha das praias a apresentar, é necessário clicar e não deslizar o botão;
-* ~~Se for usada a tecla de retorno do Android e não o menu, a aplicação pode deixar de funcionar.~~
-* Durante a operação de recolha de dados (asynctask), se for interrompida, a aplicação pode deixar de funcionar.
+* No ecrã de escolha das praias a apresentar, é necessário clicar e não deslizar o botão (possivelmente depende da versão do Android);
+* ~~Se for usada a tecla de retorno do Android e não o menu, a aplicação pode deixar de funcionar;~~
+* ~~Durante a operação de recolha de dados (asynctask e escrever na BD), se esta for interrompida, a aplicação pode deixar de funcionar;~~
+* ~~No caso de não haver ligação à internet, a aplicação pode deixar de funcionar.~~

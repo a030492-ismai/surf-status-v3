@@ -135,15 +135,23 @@ public class FragEscolherPraias extends Fragment {
             protected Document doInBackground(String... s) {
                 Document fulldoc = null;
                 try {
+                    if (isCancelled())
+                    {
+                        return (null);
+                    }
                     fulldoc = Jsoup.connect(s[0]).get();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    return null;
                 }
                 return fulldoc;
             }
 
             @Override
             protected void onPostExecute(Document fulldoc) {
+                if(fulldoc.equals(null)){
+                    Toast.makeText(getContext(), "verifique a ligacao 'a internet", Toast.LENGTH_LONG).show();
+                }
                 actualizarListaPraiasCont(fulldoc);
             }
         }.execute(urlListaPraias);

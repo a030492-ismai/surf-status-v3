@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import java.io.IOException;
@@ -108,22 +110,37 @@ public class FragEcraDetalhes extends Fragment {
             protected void onPreExecute(){
                 text.setText("a actualizar descricao...");
             }
+
+            @Override
+            protected void onCancelled(){
+                Toast.makeText(getView().getContext(), "CANCELADO", Toast.LENGTH_LONG).show();
+            }
+
             @Override
             protected String[] doInBackground(String... s) {
                 Document fulldoc = null;
 
                 try {
+                    if (isCancelled())
+                    {
+                        return (null);
+                    }
                     fulldoc = Jsoup.connect(s[0]).get();
                     s[0] = fulldoc.select("div.conditionDescription").first().text();
 
                 } catch (IOException e) {
                     e.printStackTrace();
+                    s[0] = "N/A";
+                    return s;
                 }
                 return s;
             }
 
             @Override
             protected void onPostExecute(String[] s) {
+                if(s[0].equals("N/A")){
+                    Toast.makeText(getContext(), "verifique a ligacao 'a internet", Toast.LENGTH_LONG).show();
+                }
                 text.setText(s[0]);
             }
         }.execute(url);
